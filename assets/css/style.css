@@ -1,0 +1,963 @@
+/*
+==============================================
+Variables CSS
+==============================================
+*/
+
+:root {
+    --color-orange: rgb(250, 80, 1);
+}
+
+
+/*
+==============================================
+Reset CSS
+==============================================
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    vertical-align: baseline;
+}
+
+* {
+    transition: color 300ms ease;
+    transition: border 300ms ease;
+    transition: display 300ms ease;
+}
+
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:hover,
+a:active,
+a:focus,
+input[type=radio] {
+    outline: none;
+    outline: 0;
+}
+
+
+/* remember to define focus styles! */
+
+:focus {
+    outline: none;
+}
+
+body {
+    color: black;
+    background: transparent;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+
+/* tables still need 'cellspacing="0"' in the markup */
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+strong {
+    font-weight: 600;
+}
+
+caption,
+th,
+td {
+    text-align: left;
+    font-weight: normal;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+}
+
+blockquote,
+q {
+    quotes: "" "";
+}
+
+.form-control:focus {
+    border-color: rgba(214, 214, 214, 1);
+    webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+/*
+==============================================
+Style General
+==============================================
+*/
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
+}
+
+html {
+    -ms-text-size-adjust: none;
+    font-size: 16px;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    display: block;
+    background-color: black;
+    color: white !important;
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+}
+
+
+/* Loader */
+
+#loader {
+    background: rgb(0 0 0 / 89%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#loader img {
+    opacity: 0.6;
+    width: 150px;
+}
+
+#infinite {
+    /* background: rgb(0 0 0 / 89%); */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#infinite img {
+    opacity: 0.6;
+    width: 48px;
+}
+
+.msgAlert {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    opacity: 0;
+}
+
+.msgAlert p {
+    background: var(--color-orange);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.msg a {
+    color: black;
+    text-decoration: underline;
+}
+
+
+/* Pantalla detectar pais */
+
+.pais {
+    background: black;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    flex-direction: column;
+    display: none;
+}
+
+.pais>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pais hr {
+    width: 100%;
+    height: 0px;
+    background: white;
+    margin: 30px 0px;
+    border-bottom: 1px solid white;
+}
+
+.pais ul a {
+    color: var(--color-orange);
+}
+
+.pais h2,
+.pais h3 {
+    color: white;
+    text-align: center;
+}
+
+.pais h3 span {
+    color: var(--color-orange);
+}
+
+.seguir {
+    background: var(--color-orange);
+    border: 1px solid var(--color-orange);
+    color: white;
+    text-align: center;
+}
+
+
+/*
+==============================================
+Menu
+==============================================
+*/
+
+.buy {
+    width: 40px;
+    height: 40px;
+    background: rgb(223, 45, 240);
+    border-radius: 50%;
+    margin-left: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 26px;
+    left: 20px;
+    z-index: 99;
+}
+
+.buy img {
+    height: 28px;
+    width: auto;
+}
+
+.user {
+    width: 40px;
+    height: 40px;
+    background: #bcf735;
+    border-radius: 50%;
+    margin-right: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 26px;
+    right: 20px;
+    z-index: 99;
+}
+
+.user img {
+    height: 28px;
+    width: auto;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 14px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 99;
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+.menu {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top: 20px;
+    left: 70px;
+    z-index: 99;
+}
+
+.menu img {
+    width: 40px;
+    height: auto;
+}
+
+
+/*
+==============================================
+Login
+==============================================
+*/
+
+form#loginform {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#loginform input[type=text],
+#loginform input[type=password] {
+    text-align: center;
+    border-radius: 17px;
+    width: 285px;
+    height: 35px;
+    border: none;
+    font-size: small;
+    color: black;
+}
+
+#loginform .login-username,
+#loginform .login-password {
+    margin-bottom: 10px;
+}
+
+#loginform .login-username label,
+#loginform .login-password label {
+    display: none;
+}
+
+
+/*
+==============================================
+Registro
+==============================================
+*/
+
+.content_center {
+    text-align: center;
+}
+
+.img_registry {
+    padding-top: 1.5rem;
+    padding-bottom: 3.2rem;
+    width: 79px;
+}
+
+.label {
+    color: white;
+    height: 75px;
+    margin: auto;
+    width: 220px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+.input_text {
+    text-align: center;
+    border-radius: 17px;
+    width: 285px;
+    height: 35px;
+    border: none;
+    font-size: small;
+    color: black;
+}
+
+.div_text {
+    padding-top: 0.3rem;
+}
+
+.div_button_registry {
+    padding-top: 0.3rem;
+    padding-bottom: 4rem;
+}
+
+.button {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2973f;
+    border-radius: 17px;
+    width: 285px;
+    height: 35px;
+    border: none;
+    font-weight: bold;
+    font-size: medium;
+    letter-spacing: 0.1em;
+}
+
+.select_text {
+    appearance: none;
+    border-radius: 17px;
+    width: 285px;
+    height: 35px;
+    border: none;
+    font-size: small;
+    text-align-last: center !important;
+    color: gray;
+    background-position: right center;
+    background-image: url(./img/arrow-down.png);
+    background-repeat: no-repeat;
+    color: black;
+}
+
+.option_center {
+    padding-left: 5rem;
+    border-radius: 17px;
+    width: 285px;
+    height: 35px;
+    border: none;
+    appearance: none;
+}
+
+.text_medium_center {
+    padding-top: 1rem;
+    color: white;
+    height: 75px;
+    margin: auto;
+    width: 300px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+.checkbox {
+    height: 20px;
+    width: 20px;
+    margin-right: 0.4em;
+}
+
+.div_close {
+    text-align: right;
+    padding-right: 1.5rem;
+    padding-top: 2rem;
+}
+
+.button_close {
+    background-color: transparent;
+    background-image: url('./img/cross.png');
+    height: 40px;
+    width: 40px;
+    border: none;
+}
+
+
+/*
+==============================================
+Perfil
+==============================================
+*/
+
+.perfil {
+    background: black;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    flex-direction: column;
+    color: white !important;
+}
+
+
+/*
+==============================================
+Home
+==============================================
+*/
+
+.contenido {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.cont {
+    width: 100%;
+    height: 100vh;
+    background: #44f5e6;
+}
+
+.slide {
+    background: black;
+}
+
+.contenido.center_flex {
+    justify-content: center;
+}
+
+.favoritos {
+    color: white !important;
+}
+
+.contenido {
+    width: 100%;
+    height: 100%;
+}
+
+.cont {
+    width: 100%;
+    height: 100%;
+    background: #44f5e6;
+}
+
+#slide2,
+#slide3 {
+    background: black;
+}
+
+.fp-controlArrow {
+    display: none;
+}
+
+.section3 {
+    background-image: url("https://alvarotrigo.com/fullPage/extensions/imgs/parallax/parallax-3-3.jpg");
+}
+
+.section1 {
+    background-image: url("https://alvarotrigo.com/fullPage/extensions/imgs/parallax/parallax-2.jpg");
+    background-position: center 60%;
+}
+
+h1,
+h2 {
+    color: white;
+}
+
+#fullpage {
+    background: black;
+}
+
+#myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-color: black;
+    /* in case the video doesn't fit the whole page*/
+    background-image: /* our video */
+    ;
+    background-position: center center;
+    background-size: contain;
+    object-fit: cover;
+    /*cover video background */
+    z-index: 1;
+}
+
+.overlay {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000045;
+    z-index: 2;
+}
+
+
+/* Layer with position absolute in order to have it over the video
+* --------------------------------------- */
+
+#section0 .layer {
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    left: 0;
+    top: 43%;
+    /*
+    * Preventing flicker on some browsers
+    * See http://stackoverflow.com/a/36671466/1081396  or issue #183
+    */
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+
+/*solves problem with overflowing video in Mac with Chrome */
+
+#section0 {
+    overflow: hidden;
+}
+
+
+/* Bottom menu
+* --------------------------------------- */
+
+#infoMenu li a {
+    color: #fff;
+}
+
+
+/* Hiding video controls
+* See: https://css-tricks.com/custom-controls-in-html5-video-full-screen/
+* --------------------------------------- */
+
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 67px;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.contenido p {
+    color: white;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.contenido_tarjeta {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.texto_tarjeta {
+    width: 100%;
+    background: #00000078;
+    padding: 20px;
+    position: relative;
+    z-index: 99;
+}
+
+.texto_naranja {
+    color: rgb(250, 80, 1) !important;
+    font-size: 11px !important;
+}
+
+.contenido_tarjeta_interna {
+    width: 100%;
+    height: 100%;
+}
+
+.contenido_tarjeta_interna h1 {
+    padding: 26px 10px;
+    font-size: 15px;
+}
+
+.texto_tarjeta h1 {
+    margin-bottom: 17px;
+    font-size: 15px;
+}
+
+.contenido_tarjeta_interna p {
+    padding: 26px 10px;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.contenido_tarjeta_compartir {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+/*
+==============================================
+Navegacion tarjetas
+==============================================
+*/
+
+.fp-controlArrow.fp-next {
+    right: 15px;
+    border-width: 16px 0 16px 16px !important;
+    border-color: transparent transparent transparent var(--color-orange) !important;
+}
+
+.fp-controlArrow.fp-prev {
+    left: 15px;
+    width: 0;
+    border-width: 16px 16px 16px 0 !important;
+    border-color: transparent var(--color-orange) transparent transparent !important;
+}
+
+.contGeneral {
+    padding: 50px 10px;
+    background: black;
+}
+
+
+/*
+==============================================
+Archive productos
+==============================================
+*/
+
+.products h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 20px 0px;
+}
+
+.products h2 {
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    background: white;
+    padding: 4px 8px;
+    color: var(--color-orange);
+    margin-bottom: 10px;
+    display: inline;
+    min-width: 110px;
+}
+
+.products h3 {
+    text-transform: uppercase;
+    font-size: 8px;
+    text-align: center;
+    margin-bottom: 4px;
+    min-height: 30px;
+}
+
+.products_category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products_slider {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.products_slider_el {
+    width: 30%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 6px 4px;
+}
+
+.products_slider_el_more,
+.products_slider_el_buy {
+    margin-bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products_slider_el_more a,
+.products_slider_el_buy a {
+    font-weight: bold;
+    padding: 4px 8px;
+    background: var(--color-orange);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-size: 9px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.products_slider_el_img {
+    margin-bottom: 2px;
+}
+
+
+/*
+==============================================
+Single productos
+==============================================
+*/
+
+.productsDetail_name h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0px 20px;
+    text-transform: uppercase;
+}
+
+.productsDetail_buy {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productsDetail_buy a {
+    font-weight: bold;
+    padding: 6px 26px;
+    background: var(--color-orange);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 16px;
+}
+
+.productsFeatured_tit h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0px;
+    text-transform: uppercase;
+}
+
+.productsFeatured_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 26px;
+}
+
+.productsFeatured_list_el {
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+.search {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.search input {
+    width: 100%;
+    font-size: 16px;
+}

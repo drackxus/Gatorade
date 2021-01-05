@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'Suk text';
+  src: url('../fonts/SukhumvitSet-Text.eot');
+  src: url('../fonts/SukhumvitSet-Text.eot?#iefix') format('embedded-opentype'), url('../fonts/SukhumvitSet-Text.woff2') format('woff2'), url('../fonts/SukhumvitSet-Text.woff') format('woff'), url('../fonts/SukhumvitSet-Text.ttf') format('truetype'), url('../fonts/SukhumvitSet-Text.svg#SukhumvitSet-Text') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suk bold';
+  src: url('../fonts/SukhumvitSet-Bold.eot');
+  src: url('../fonts/SukhumvitSet-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/SukhumvitSet-Bold.woff2') format('woff2'), url('../fonts/SukhumvitSet-Bold.woff') format('woff'), url('../fonts/SukhumvitSet-Bold.ttf') format('truetype'), url('../fonts/SukhumvitSet-Bold.svg#SukhumvitSet-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suk semibold';
+  src: url('../fonts/SukhumvitSet-SemiBold.eot');
+  src: url('../fonts/SukhumvitSet-SemiBold.eot?#iefix') format('embedded-opentype'), url('../fonts/SukhumvitSet-SemiBold.woff2') format('woff2'), url('../fonts/SukhumvitSet-SemiBold.woff') format('woff'), url('../fonts/SukhumvitSet-SemiBold.ttf') format('truetype'), url('../fonts/SukhumvitSet-SemiBold.svg#SukhumvitSet-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suk thin';
+  src: url('../fonts/SukhumvitSet-Thin.eot');
+  src: url('../fonts/SukhumvitSet-Thin.eot?#iefix') format('embedded-opentype'), url('../fonts/SukhumvitSet-Thin.woff2') format('woff2'), url('../fonts/SukhumvitSet-Thin.woff') format('woff'), url('../fonts/SukhumvitSet-Thin.ttf') format('truetype'), url('../fonts/SukhumvitSet-Thin.svg#SukhumvitSet-Thin') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suk light';
+  src: url('../fonts/SukhumvitSet-Light.eot');
+  src: url('../fonts/SukhumvitSet-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/SukhumvitSet-Light.woff2') format('woff2'), url('../fonts/SukhumvitSet-Light.woff') format('woff'), url('../fonts/SukhumvitSet-Light.ttf') format('truetype'), url('../fonts/SukhumvitSet-Light.svg#SukhumvitSet-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bebas bold';
+  src: url('../fonts/BebasNeueBold.eot');
+  src: url('../fonts/BebasNeueBold.eot?#iefix') format('embedded-opentype'), url('../fonts/BebasNeueBold.woff2') format('woff2'), url('../fonts/BebasNeueBold.woff') format('woff'), url('../fonts/BebasNeueBold.ttf') format('truetype'), url('../fonts/BebasNeueBold.svg#BebasNeueBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat extrabd';
+  src: url('../fonts/Montserrat-ExtraBold.eot');
+  src: url('../fonts/Montserrat-ExtraBold.eot?#iefix') format('embedded-opentype'), url('../fonts/Montserrat-ExtraBold.woff2') format('woff2'), url('../fonts/Montserrat-ExtraBold.woff') format('woff'), url('../fonts/Montserrat-ExtraBold.ttf') format('truetype'), url('../fonts/Montserrat-ExtraBold.svg#Montserrat-ExtraBold') format('svg');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial it';
+  src: url('../fonts/Arial-ItalicMT.eot');
+  src: url('../fonts/Arial-ItalicMT.eot?#iefix') format('embedded-opentype'), url('../fonts/Arial-ItalicMT.woff2') format('woff2'), url('../fonts/Arial-ItalicMT.woff') format('woff'), url('../fonts/Arial-ItalicMT.ttf') format('truetype'), url('../fonts/Arial-ItalicMT.svg#Arial-ItalicMT') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Arial bd';
+  src: url('../fonts/Arial-BoldMT.eot');
+  src: url('../fonts/Arial-BoldMT.eot?#iefix') format('embedded-opentype'), url('../fonts/Arial-BoldMT.woff2') format('woff2'), url('../fonts/Arial-BoldMT.woff') format('woff'), url('../fonts/Arial-BoldMT.ttf') format('truetype'), url('../fonts/Arial-BoldMT.svg#Arial-BoldMT') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial bl';
+  src: url('../fonts/Arial-Black.eot');
+  src: url('../fonts/Arial-Black.eot?#iefix') format('embedded-opentype'), url('../fonts/Arial-Black.woff2') format('woff2'), url('../fonts/Arial-Black.woff') format('woff'), url('../fonts/Arial-Black.ttf') format('truetype'), url('../fonts/Arial-Black.svg#Arial-Black') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial bd it';
+  src: url('../fonts/Arial-BoldItalicMT.eot');
+  src: url('../fonts/Arial-BoldItalicMT.eot?#iefix') format('embedded-opentype'), url('../fonts/Arial-BoldItalicMT.woff2') format('woff2'), url('../fonts/Arial-BoldItalicMT.woff') format('woff'), url('../fonts/Arial-BoldItalicMT.ttf') format('truetype'), url('../fonts/Arial-BoldItalicMT.svg#Arial-BoldItalicMT') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Arial nm';
+  src: url('../fonts/ArialMT.eot');
+  src: url('../fonts/ArialMT.eot?#iefix') format('embedded-opentype'), url('../fonts/ArialMT.woff2') format('woff2'), url('../fonts/ArialMT.woff') format('woff'), url('../fonts/ArialMT.ttf') format('truetype'), url('../fonts/ArialMT.svg#ArialMT') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
