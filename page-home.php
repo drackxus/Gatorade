@@ -60,9 +60,6 @@ if ($eti) {
 // var_dump($cat);
 // var_dump($eti);
 ?>
-<button>
-    Add section
-</button>
 <div id="fullpage">
     <!-- TARJETAS -->
 
@@ -110,7 +107,7 @@ if ($eti) {
                 <div class="slide active">
                     <div class="contenido" style="background-image: url('<?php if ($image[0]) { echo $image[0]; } ?>');">
                         <video muted loop <?php if ($i == 0) { $i = 1; ?> autoplay <?php } ?> id="myVideo">
-                            <source data-src="<?php $key = "link_video"; echo get_post_meta($post->ID, $key, true); ?>" type="video/mp4">
+                            <source data-src="<?php echo get_post_meta($post->ID, 'video_loop', true); ?>" type="video/mp4">
                         </video>
                         <div class="overlay"></div>
                         <div class="contenido_tarjeta">

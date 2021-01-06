@@ -120,27 +120,70 @@ function update_profile()
 |-------------------------------------------------------------------------------
 */
 
-function more_post_ajax(){
-    $offset = $_POST["offset"];
-    $ppp = $_POST["ppp"];
-    header("Content-Type: text/html");
+function more_post_ajax()
+{
+	global $post;
+	$offset = $_POST["offset"];
+	$ppp = $_POST["ppp"];
+	header("Content-Type: text/html");
 
-    $args = array(
-        'post_type' => 'tarjetas',
-        'posts_per_page' => $ppp,
-        // 'cat' => 1,
-        'offset' => $offset,
-    );
+	$args = array(
+		'post_type' => 'tarjetas',
+		'posts_per_page' => $ppp,
+		// 'cat' => 1,
+		'offset' => $offset,
+	);
 
 	$loop = new WP_Query($args);
-	
-	while ($loop->have_posts()) { $loop->the_post(); ?>
-	<div class="section"><h1 style="color: black !important;"><?php the_title(); ?></h1></div>
-		<?php
-	 }	
+	if ($loop->have_posts()) :
 
-    exit; 
+	while ($loop->have_posts()) : $loop->the_post(); ?>
+		<div class="section">
+			<div class="slide active">
+				<div class="contenido" style="background-image: url('<?php if ($image[0]) {
+																			echo $image[0];
+																		} ?>');">
+					<?php echo get_post_meta($post->ID, 'video_loop', true); ?>
+					<video muted loop autoplay id="myVideo">
+						<source data-src="<?php echo get_post_meta($post->ID, 'video_loop', true); ?>" type="video/mp4">
+					</video>
+					<div class="overlay"></div>
+					<div class="contenido_tarjeta">
+						<div class="texto_tarjeta">
+							<h1><?php the_title(); ?></h1>
+							<p class="texto_naranja"><b>CATEGORIAS:</b>
+								<?php
+								$cats = get_the_terms($post->ID, 'categoriasTarjetas');
+								if ($cats) {
+									foreach ($cats as $catt) {
+										echo $catt->name . ', ';
+									}
+								}
+								?>
+							</p>
+							<p class="texto_naranja"><b>ETIQUETAS:</b>
+								<?php
+								$etis = get_the_terms($post->ID, 'etiquetasTarjetas');
+								if ($etis) {
+									foreach ($etis as $ett) {
+										echo $ett->name . ', ';
+									}
+								}
+								?>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	 <?php 
+	 endwhile;  
+	 
+	endif;
+	wp_reset_postdata(); 
+	exit;
 }
 
-add_action('wp_ajax_nopriv_more_post_ajax', 'more_post_ajax'); 
+add_action('wp_ajax_nopriv_more_post_ajax', 'more_post_ajax');
 add_action('wp_ajax_more_post_ajax', 'more_post_ajax');
