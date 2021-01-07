@@ -13,38 +13,7 @@ get_header();
 <!-- Fullpage -->
 <link rel="stylesheet" href="https://rawgit.com/alvarotrigo/fullPage.js/master/dist/fullpage.css" />
 
-<!-- <div class="pais">
-    <div>
-        <h2>Bienvenido</h2>
-        <br>
-        <h3>Vemos que te estas intentado conectar desde <span class="country"></span></h3>
-        <br>
-        <button class="seguir">Seguir con <span class="country"></span></button>
-    </div>
-    <hr>
-    <div>
-        <h2>Elegir otro país</h2>
-        <br>
-        <ul>
-            <li><a href="/mx">Mexico</a></li>
-            <li><a href="#">Mexico</a></li>
-            <li><a href="#">Mexico</a></li>
-            <li><a href="#">Mexico</a></li>
-        </ul>
-    </div>
-</div> -->
 <?php
-global $current_user;
-wp_get_current_user();
-// if ( is_user_logged_in() ) { 
-//   echo 'Username: ' . $current_user->user_login . "\n"; echo 'User display name: ' . $current_user->display_name . "\n"; 
-// } 
-// else { 
-//   echo 'Aun no tienes una cuenta';
-//   echo '<br><br>';
-//   wp_loginout(); 
-// } 
-
 
 $cat =   get_user_meta($current_user->ID, 'interesCategoria', false);
 $eti =   get_user_meta($current_user->ID, 'interesEtiqueta', false);
@@ -95,7 +64,7 @@ if ($eti) {
         <?php while ($result->have_posts()) : $result->the_post(); ?>
 
             <div class="section">
-                <!-- <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail'); ?>
+                <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail'); ?>
                 <div class="slide favoritos">
                     <div class="contenido center_flex">
                         <div class="contenido_tarjeta_compartir">
@@ -103,7 +72,7 @@ if ($eti) {
                             <br>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="slide active">
                     <div class="contenido" style="background-image: url('<?php if ($image[0]) { echo $image[0]; } ?>');">
                         <video muted loop <?php if ($i == 0) { $i = 1; ?> autoplay <?php } ?> id="myVideo">

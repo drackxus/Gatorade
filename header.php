@@ -48,21 +48,6 @@
 </head>
 
 <body>
-  
-    <a href="#" class="logo">
-      <img src="<?php echo IMGURL ?>logo.png" alt="">
-    </a>
-    <a class="menu">
-      <img src="<?php echo IMGURL ?>menu.png" alt="">
-    </a>
- 
- 
-    <a href="#" class="buy">
-      <img src="<?php echo IMGURL ?>buy.png" alt="">
-    </a>
-    <a href="#" class="user">
-      <img src="<?php echo IMGURL ?>user.png" alt="">
-    </a>
  
   <div class="msgAlert">
     <p>Tu registro ha sido exitoso, verifica tu buzon de mensajes para establecer tu contraseña<br>Seras redirigido automaticamente<br><a href="<?php echo home_url(); ?>">Ir a la pagina principal</a></p>
@@ -75,4 +60,5 @@
   </div>
   <!--======= Seccion Header =======-->
   <header class="header">
+  <?php get_template_part( 'template-parts/navigation/navigation' ); ?>
   </header>

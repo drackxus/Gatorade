@@ -195,7 +195,7 @@ body {
     position: relative;
     width: 100%;
     display: block;
-    background-color: black;
+    background: black !important;
     color: white !important;
 }
 
@@ -331,9 +331,23 @@ Menu
 ==============================================
 */
 
-.buy {
+.close {
     width: 40px;
     height: 40px;
+    position: fixed;
+    top: 26px;
+    right: 20px;
+    z-index: 99;
+}
+
+.close img {
+    width: 40px;
+    height: auto;
+}
+
+.buy {
+    width: 44px;
+    height: 44px;
     background: rgb(223, 45, 240);
     border-radius: 50%;
     margin-left: 14px;
@@ -342,7 +356,7 @@ Menu
     align-items: center;
     position: fixed;
     bottom: 26px;
-    left: 20px;
+    left: 8px;
     z-index: 99;
 }
 
@@ -352,8 +366,8 @@ Menu
 }
 
 .user {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: #bcf735;
     border-radius: 50%;
     margin-right: 14px;
@@ -362,7 +376,7 @@ Menu
     align-items: center;
     position: fixed;
     bottom: 26px;
-    right: 20px;
+    right: 8px;
     z-index: 99;
 }
 
@@ -377,7 +391,7 @@ Menu
     border-radius: 50%;
     margin-right: 14px;
     position: fixed;
-    top: 20px;
+    top: 26px;
     left: 20px;
     z-index: 99;
 }
@@ -391,7 +405,7 @@ Menu
     width: 40px;
     height: 40px;
     position: fixed;
-    top: 20px;
+    top: 26px;
     left: 70px;
     z-index: 99;
 }
