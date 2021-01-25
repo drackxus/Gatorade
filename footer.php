@@ -7,12 +7,14 @@
  * @package WordPress
  */
 ?>
+</div>
 <footer class="footer" class="woowContentFull">
 
 </footer>
 
 
-
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6005e026c2e3b59c35e06719" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="<?php echo JSURL ?>scripts.js" type="text/javascript"></script>
 
 <!-- General Scripts -->
 <script type="text/JavaScript" src="<?php echo JSURL ?>html5.js"></script>
@@ -20,15 +22,18 @@
 <!-- Contact Form -->
 <!-- <script src="<?php echo JSURL ?>jquery.form.min.js"></script> -->
 
-<!-- Woow Custom Scripts -->
-<script type='text/javascript' src='<?php echo JSURL ?>jswoow.js?v=<?php echo VCACHE ?>'></script>
-
 <!-- Jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 
+<!-- Woow Custom Scripts -->
+<script type='text/javascript' src='<?php echo JSURL ?>jswoow.js?v=<?php echo VCACHE ?>'></script>
+
 <!-- Fullpage -->
-<script src="https://rawgit.com/alvarotrigo/fullPage.js/master/dist/fullpage.js" crossorigin="anonymous"></script>
-<!-- <script src="https://pagecdn.io/lib/fullpage/3.0.9/fullpage.extensions.min.js" crossorigin="anonymous"  ></script> -->
+<script src="<?php echo JSURL ?>fullpage/fullpage.js" crossorigin="anonymous"></script>
+<script src="<?php echo JSURL ?>fullpage/ext.js" crossorigin="anonymous"  ></script>
+<script src="<?php echo JSURL ?>fullpage/scroll.js" crossorigin="anonymous"  ></script>
+
+<!-- <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script> -->
 
 
 
@@ -125,8 +130,6 @@
 
 
 
-
-
     $(".interes").on("submit", function(event) {
       event.preventDefault();
       var selectedCategorias = [];
@@ -176,89 +179,48 @@
     });
 
 
-    $(document).ready(function() {
-
-      var ajaxUrl = "<?php echo admin_url('admin-ajax.php') ?>";
-      var page = 1; // What page we are on.
-      var ppp = 2; // Post per page
 
 
-      init();
+  });
 
-      function init() {
-        $('#fullpage').fullpage({
-          navigation: true,
-          scrollBar: false,
-          lazyLoading: true,
-          continuousVertical: false,
-          continuousHorizontal: false,
-          loopHorizontal: false,
-          dragAndMove: true,
-          scrollingSpeed: 400,
-          autoScrolling: true,
-          afterLoad: function(origin, destination, direction) {
-            var params = {
-              origin: origin,
-              destination: destination,
-              direction: direction
-            };
+  // Favoritos
+  $("#favorites").on("click", function(event) {
+    //event.preventDefault();
+    //console.log(event)
 
-            if (destination.isLast == true) {
-              //La llamada AJAX
-              $.ajax({
-                type: "post",
-                url: MyAjax.url, // Pon aquí tu URL
-                data: {
-                  action: "more_post_ajax",
-                  offset: (page * ppp) + 1,
-                  ppp: ppp
-                },
-                beforeSend: function() {
-                  $('#infinite').css('display', 'flex');
-                },
-                error: function(response) {
-                  console.log(response);
-                },
-                success: function(response) {
-                  page++;
-                  console.log('Pagina' + page);
+    var user = $('#userId').val();
+    var post = $('#postId').val();
+    console.log(user)
+    console.log(post)
+    if (user == '' || post == '') {
+      alert('Debe registrarse para guardar en favortos')
+    } else {
+      $.ajax({
+        type: "post",
+        url: MyAjax.url, // Pon aquí tu URL
+        data: {
+          action: "user_favorites",
+          user: user,
+          post: post,
 
+        },
+        beforeSend: function() {
+          $('#loader').css('display', 'flex');
+        },
+        error: function(response) {
+          console.log(response);
+        },
+        success: function(response) {
+          // Actualiza el mensaje con la respuesta
+          console.log(response);
+          $('.msgAlert').css('display', 'flex');
+          $('.msgAlert').css('opacity', '1');
+          $('.msgAlert p').html(response);
+          $('#loader').css('display', 'none');
+        }
+      })
+    }
 
-                  // Actualiza el mensaje con la respuesta
-                  console.log(response);
-                  $('#fullpage').append(response);
-
-                  //remembering the active section / slide
-                  var activeSectionIndex = $('.fp-section.active').index();
-                  var activeSlideIndex = $('.fp-section.active').find('.slide.active').index();
-
-                  $.fn.fullpage.destroy('all');
-
-                  //setting the active section as before
-                  $('.section').eq(activeSectionIndex).addClass('active');
-
-                  //were we in a slide? Adding the active state again
-                  if (activeSlideIndex > -1) {
-                    $('.section.active').find('.slide').eq(activeSlideIndex).addClass('active');
-                  }
-
-                  init();
-
-
-                  $('#txtMessage').text("oka");
-                  $('#infinite').css('display', 'none');
-                }
-              })
-            }
-            console.log("--- afterLoad ---");
-            console.log(params);
-            console.log('===============');
-
-          }
-        });
-      }
-
-    });
 
   });
 </script>

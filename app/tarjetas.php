@@ -64,7 +64,7 @@ function custom_post_type()
         'exclude_from_search' => false,
         'publicly_queryable'  => true,
         'capability_type'     => 'post',
-        'show_in_rest' => false
+        'show_in_rest' => true
 
     );
 
@@ -149,55 +149,6 @@ add_action('init', 'custom_post_type', 0);
 
 
 
-/* CREAR METABOX URL VIDEO PARA LAS TARJETAS */
-
-function metabox_video( $post_type, $post ) {
-    add_meta_box(
-        'aw-meta-box',
-        __( 'Video loop' ),
-        'render_video_meta_box',
-        array('tarjetas'), //post types here
-        'normal',
-        'high'
-    );
-}
-add_action( 'add_meta_boxes', 'metabox_video', 10, 2 );
- 
-function render_video_meta_box($post) {
-    $image = get_post_meta($post->ID, 'video_loop', true);
-    ?>
-    <table style="width: 100%;">
-        <tr>            
-            <td><input type="text" name="video_loop" id="video_loop" value="<?php echo $image; ?>" style="width: 100%;"/></td>
-        </tr>
-        <tr>
-            <td><a href="#" class="aw_upload_image_button button button-secondary"><?php _e('Seleccionar video'); ?></a></td>
-        </tr>
-    </table>
-    <?php
-}
-
-function aw_include_script() {
- 
-    if ( ! did_action( 'wp_enqueue_media' ) ) {
-        wp_enqueue_media();
-    }
-  
-    wp_enqueue_script( 'awscript', get_stylesheet_directory_uri() . '/assets/js/tarjetas/subir_video.js', array('jquery'), null, false );
-}
-add_action( 'admin_enqueue_scripts', 'aw_include_script' );
-
-function video_save_postdata($post_id)
-{
-    if (array_key_exists('video_loop', $_POST)) {
-        update_post_meta(
-            $post_id,
-            'video_loop',
-            $_POST['video_loop']
-        );
-    }
-}
-add_action('save_post', 'video_save_postdata');
 
 
 
@@ -205,38 +156,34 @@ add_action('save_post', 'video_save_postdata');
 
 /* CREAR METABOX URL VIDEO COMPLETPO PARA LAS TARJETAS */
 
-function link_video_completo_metabox()
+function id_video_youtube_metabox()
 {
-    add_meta_box('link_video_completo_completo', 'Link video full', 'link_video_completo_callback', 'tarjetas', 'side', 'high');
+    add_meta_box('meta-box-video-youtube', 'Id video Youtube', 'id_video_youtube_callback', 'tarjetas', 'side', 'default');
 }
-add_action('add_meta_boxes', 'link_video_completo_metabox');
+add_action('add_meta_boxes', 'id_video_youtube_metabox');
 
-function link_video_completo_callback($post)
+function id_video_youtube_callback($post)
 {
     $values    = get_post_custom($post->ID);
-    $link      = isset($values['link_video_completo']) ? esc_attr($values['link_video_completo'][0]) : '';
+    $link      = isset($values['id_video_youtube']) ? esc_attr($values['id_video_youtube'][0]) : '';
 ?>
+    <p style="font-style:italic;">Lorem ipsum dolor asem</p>
     <p>
-        <label for="url_video_completo">URL</label>
-        <input type="text" name="url_video_completo" id="url_video_completo" value="<?php echo esc_html($link); ?>" />
+        <label for="ld_youtube">Id video: </label>
+        <input type="text" name="ld_youtube" id="ld_youtube" value="<?php echo esc_html($link); ?>" />
     </p>
 <?php
 }
 
-add_action('save_post', 'link_video_completo_save');
+add_action('save_post', 'id_video_youtube_save');
 
 
-function link_video_completo_save($post_id)
+function id_video_youtube_save($post_id)
 {
     // Ignoramos los auto guardados.
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
     }
-
-    // Si no está el nonce declarado antes o no podemos verificarlo no seguimos.
-    // if ( ! isset( $_POST['bf_metabox_nonce'] ) || ! wp_verify_nonce( $_POST['bf_metabox_nonce'], 'l_metabox_nonce' ) ) {
-    //     return;
-    // }
 
     // Si el usuario actual no puede editar entradas no debería estar aquí.
     if (!current_user_can('edit_post')) {
@@ -246,9 +193,8 @@ function link_video_completo_save($post_id)
     // AHORA es cuando podemos guardar la información.
 
     // Nos aseguramos de que hay información que guardar.
-    if (isset($_POST['url_video_completo'])) {
-        update_post_meta($post_id, 'link_video_completo', $_POST['url_video_completo']);
-        // update_post_meta( $post_id, 'link_video_completo', wp_kses( $_POST['url_video_completo'], $allowed ) );
+    if (isset($_POST['ld_youtube'])) {
+        update_post_meta($post_id, 'ld_youtube', $_POST['ld_youtube']);
     }
 }
 
@@ -257,12 +203,100 @@ function link_video_completo_save($post_id)
 
 
 
+/* CREAR METABOX URL VIDEO PARA LAS TARJETAS */
+
+function video_loop_metabox()
+{
+    add_meta_box('meta-box-video-loop', 'Video loop background', 'video_loop_callback', 'tarjetas', 'side', 'default');
+}
+add_action('add_meta_boxes', 'video_loop_metabox');
+
+function video_loop_callback($post)
+{
+    $image = get_post_meta($post->ID, 'video_background_loop', true);
+?>
+
+    <p style="font-style:italic;">Lorem ipsum dolor asem</p>
+    <p>
+        <input type="text" name="video_background_loop" id="video_background_loop" value="<?php echo $image; ?>" style="width: 100%;" />
+    </p>
+    <p>
+        <a href="#" class="upload_video_button button button-secondary"><?php _e('Seleccionar video'); ?></a>
+    </p>
+<?php
+}
+
+function aw_include_script()
+{
+
+    if (!did_action('wp_enqueue_media')) {
+        wp_enqueue_media();
+    }
+
+    wp_enqueue_script('awscript', get_stylesheet_directory_uri() . '/assets/js/tarjetas/subir_video.js', array('jquery'), null, false);
+}
+add_action('admin_enqueue_scripts', 'aw_include_script');
+
+function video_save_postdata($post_id)
+{
+    if (array_key_exists('video_background_loop', $_POST)) {
+        update_post_meta(
+            $post_id,
+            'video_background_loop',
+            $_POST['video_background_loop']
+        );
+    }
+}
+add_action('save_post', 'video_save_postdata');
 
 
 
 
 
 
+/* CREAR METABOX POSTER VIDEO PARA LAS TARJETAS */
+
+function poster_video_metabox()
+{
+    add_meta_box('meta-box-poster-video', 'Poster video background', 'poster_video_callback', 'tarjetas', 'side', 'default');
+}
+add_action('add_meta_boxes', 'poster_video_metabox');
+ 
+function poster_video_callback($post) {
+    $image = get_post_meta($post->ID, 'poster_video', true);
+    ?>
+
+    <p style="font-style:italic;">Lorem ipsum dolor asem</p>
+    <p>
+    <input type="text" name="poster_video" id="poster_video" value="<?php echo $image; ?>" style="width: 100%;"/>
+    </p>
+    <p>
+    <a href="#" class="upload_poster_video button button-secondary"><?php _e('Seleccionar poster'); ?></a>
+    </p>
+    <?php
+}
+
+function aw_include_script_poster() {
+ 
+    if ( ! did_action( 'wp_enqueue_media' ) ) {
+        wp_enqueue_media();
+    }
+  
+    wp_enqueue_script( 'awscript_poster', get_stylesheet_directory_uri() . '/assets/js/tarjetas/subir_poster.js', array('jquery'), null, false );
+}
+add_action( 'admin_enqueue_scripts', 'aw_include_script_poster' );
+
+function poster_save_postdata($post_id)
+{
+    if (array_key_exists('poster_video', $_POST)) {
+        update_post_meta(
+            $post_id,
+            'poster_video',
+            $_POST['poster_video']
+        );
+    }
+}
+add_action('save_post', 'poster_save_postdata');
 
 
 ?>

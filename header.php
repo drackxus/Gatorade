@@ -12,7 +12,10 @@
 
 ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> style="margin-top: 0px !important;">
+<html <?php language_attributes(); ?> data-wf-domain="ddks-blank-site-95aee2.webflow.io"
+  data-wf-page="6005e026c2e3b5ed12e0671a"
+  data-wf-site="6005e026c2e3b59c35e06719"
+  data-wf-status="1">
 
 <head>
   <?php
@@ -20,25 +23,52 @@
   ?>
   <meta charset="<?php bloginfo('charset'); ?>" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta class="des">
   <meta name="description" content="<?php echo get_bloginfo('description', 'display'); ?>">
   <meta name="title" content="<?php echo wp_title('|', true, 'left'); ?>">
   <meta name="language" content="Español">
   <meta name="googlebot" content="INDEX, FOLLOW">
-  <!-- General Css Styles -->
-  <!-- <link rel="stylesheet" href="<?php echo CSSURL ?>pure-min.css"> -->
-  <!-- <link rel="stylesheet" href="<?php echo CSSURL ?>grids-responsive-min.css"> -->
-  <!-- Style Site -->
+
+  <link
+      href="https://uploads-ssl.webflow.com/6005e026c2e3b59c35e06719/css/ddks-blank-site-95aee2.webflow.d2cb66e28.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      WebFont.load({
+        google: { families: ["Oswald:200,300,400,500,600,700"] },
+      });
+    </script>
+    <!--[if lt IE 9
+      ]><script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"
+        type="text/javascript"
+      ></script
+    ><![endif]-->
+    <script type="text/javascript">
+      !(function (o, c) {
+        var n = c.documentElement,
+          t = " w-mod-";
+        (n.className += t + "js"),
+          ("ontouchstart" in o ||
+            (o.DocumentTouch && c instanceof DocumentTouch)) &&
+            (n.className += t + "touch");
+      })(window, document);
+    </script>
+
+
+
+
+
   <link rel="stylesheet" href="<?php echo CSSURL ?>style.css?v=<?php echo VCACHE ?>">
   <link rel="stylesheet" href="<?php echo CSSURL ?>admin-colors.css?v=<?php echo VCACHE ?>">
   <!-- Responsive Style Site -->
   <!-- <link rel="stylesheet" href="<?php echo CSSURL ?>style-responsive.css?v=<?php echo VCACHE ?>"> -->
-  <!-- Responsive Style Site -->
-  <!-- <link rel="stylesheet" href="<?php echo CSSURL ?>icomoon/style.css"> -->
-  <!-- Fuentes -->
-  <link rel="stylesheet" href="<?php echo CSSURL ?>fuentes.css?v=<?php echo VCACHE ?>">
-
   <title>
     <?php
     // Add the page or post name.
@@ -59,6 +89,8 @@
     <img src="<?php echo IMGURL ?>infinite.gif" alt="">
   </div>
   <!--======= Seccion Header =======-->
-  <header class="header">
+  <header>
   <?php get_template_part( 'template-parts/navigation/navigation' ); ?>
+  <?php get_template_part( 'template-parts/side_buttons/side_buttons' ); ?>
   </header>
+  <div class="content">

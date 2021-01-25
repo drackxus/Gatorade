@@ -9,156 +9,64 @@
 get_header();
 
 ?>
-
 <!-- Fullpage -->
 <link rel="stylesheet" href="https://rawgit.com/alvarotrigo/fullPage.js/master/dist/fullpage.css" />
 
-<?php
-
-$cat =   get_user_meta($current_user->ID, 'interesCategoria', false);
-$eti =   get_user_meta($current_user->ID, 'interesEtiqueta', false);
-if ($cat) {
-    $catF = explode(',', $cat[0]);
-}
-
-if ($eti) {
-    $etiF = explode(',', $eti[0]);
-}
-
-
-// var_dump($cat);
-// var_dump($eti);
-?>
 <div id="fullpage">
-    <!-- TARJETAS -->
-
-
 
     <?php
-    $taxonomy = 'categoriasTarjetas';
-    $etiqueta = 'etiquetasTarjetas';
-    $termId = 'Prueba';
-
     $args = array(
         'post_type' => 'tarjetas',
         'post_status' => 'publish',
-        'posts_per_page' => '2',
-        /*'tax_query' => array(
-      'relation' => 'OR',
-      array(
-        'taxonomy' => $taxonomy,
-        'field' => 'slug',
-        'terms' => $catF // You can pass more then one term id like array(32, 65)
-      ),
-      array(
-        'taxonomy' => $etiqueta,
-        'field' => 'slug',
-        'terms' => $etiF // You can pass more then one term id like array(32, 65)
-      )
-    )*/
+        'posts_per_page' => '2'
     );
     $result = new WP_Query($args);
-    // var_dump($result);
     if ($result->have_posts()) :
-        $i = 0; ?>
-        <?php while ($result->have_posts()) : $result->the_post(); ?>
-
+        while ($result->have_posts()) : $result->the_post();
+    ?>
             <div class="section">
-                <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail'); ?>
-                <div class="slide favoritos">
-                    <div class="contenido center_flex">
-                        <div class="contenido_tarjeta_compartir">
-                            <h1>Guardar en favoritos</h1>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide active">
-                    <div class="contenido" style="background-image: url('<?php if ($image[0]) { echo $image[0]; } ?>');">
-                        <video muted loop <?php if ($i == 0) { $i = 1; ?> autoplay <?php } ?> id="myVideo">
-                            <source data-src="<?php echo get_post_meta($post->ID, 'video_loop', true); ?>" type="video/mp4">
-                        </video>
-                        <div class="overlay"></div>
-                        <div class="contenido_tarjeta">
-                            <div class="texto_tarjeta">
-                                <h1><?php the_title(); ?></h1>
-                                <p class="texto_naranja"><b>CATEGORIAS:</b>
-                                    <?php
-                                    $cats = get_the_terms($post->ID, 'categoriasTarjetas');
-                                    if ($cats) {
-                                        foreach ($cats as $catt) {
-                                            echo $catt->name . ', ';
-                                        }
-                                    }
-                                    ?>
-                                </p>
-                                <p class="texto_naranja"><b>ETIQUETAS:</b>
-                                    <?php
-                                    $etis = get_the_terms($post->ID, 'etiquetasTarjetas');
-                                    if ($etis) {
-                                        foreach ($etis as $ett) {
-                                            echo $ett->name . ', ';
-                                        }
-                                    }
-                                    ?>
-                                </p>
+                <div class="slide">
+                    <div class="card">
+                        <div class="card_content">
+                            <?php
+                                if (get_post_meta($post->ID, 'video_loop', true)) {
+                            ?>
+                                <video autoplay muted loop poster="<?php echo get_post_meta($post->ID, 'poster', true); ?>" class="video_bg">
+                                    <source src="<?php echo get_post_meta($post->ID, 'video_loop', true); ?>" type="video/mp4">
+                                </video>
+                            <?php 
+                            } else {
+                                $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');
+                                $image_alt = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
+                                $image_title = get_the_title(get_post_thumbnail_id($post->ID));
+                            ?>   
+                            <img src="<?php echo $image[0] ?>" alt="<?php echo $image_alt ?>" class="img_bg" title="<?php echo $image_title ?>">
+                            <?php
+                            }
+                            ?>
+                            <div class="card_tit">
+                                <h1 class="card_tit_txt">
+                                    <?php the_title(); ?>
+                                </h1>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="slide">
-                    <div class="contenido">
-                        <div class="contenido_tarjeta_interna ">
-                            <?php if ($image[0]) { ?>
-                                <img src="<?php echo $image[0]; ?>" style="width: 100%; height: auto" alt="" />
-                            <?php } ?>
-                            <h1><?php the_title(); ?></h1>
-                            <p><?php the_content(); ?></p>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        <?php endwhile; ?>
-    <?php endif;
-    wp_reset_postdata(); ?>
-    <!-- TARJETAS -->
-
-
-
-    <!-- PUBLICIDAD -->
-    <?php
-    $args = array(
-        'post_type' =>
-        'publicidad', 'orderby' => 'ID', 'post_status' => 'publish', 'order' => 'DESC',
-        'posts_per_page' => 1
-    );
-    $result = new WP_Query($args);
-    if ($result->have_posts()) :
-        $i = 0; ?>
-        <?php while ($result->have_posts()) : $result->the_post(); ?>
-
-            <div class="section">
-                <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail'); ?>
-                <div class="slide active">
-                    <div class="contenido" style="background-image: url('<?php echo $image[0]; ?>');">
-                        <video muted loop <?php if ($i == 0) { $i = 1; ?> autoplay <?php } ?> id="myVideo">
-                            <source data-src="<?php $key = "link_video"; echo get_post_meta($post->ID, $key, true); ?>" type="video/mp4">
-                        </video>
-                        <div class="overlay"></div>
-                        <div>
-                            <h1 style="position: absolute; z-index: 99; font-size. 30px; color:  rgb(250, 80, 1);"><?php the_title(); ?></h1>
+                <div class="slide">
+                    <div class="card">
+                    <div class="card_detail_content">
+                       <?php the_content(); ?>
                         </div>
                     </div>
                 </div>
             </div>
-            
-        <?php endwhile; ?>
-    <?php endif;
-    wp_reset_postdata(); ?>
-    <!-- PUBLICIDAD -->
+
+    <?php
+        endwhile;
+    endif;
+    wp_reset_postdata();
+    ?>
 </div>
-
-
 
 <?php
 get_footer();

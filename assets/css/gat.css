@@ -1,3 +1,12 @@
+:root {
+    --wp-admin-theme-color: #fa5001;
+}
+
+.wp-core-ui .button-link:active,
+.wp-core-ui .button-link:hover {
+    color: #fa5001;
+}
+
 body {
     background: #fff;
 }

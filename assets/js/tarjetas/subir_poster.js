@@ -1,21 +1,21 @@
 jQuery(function($) {
-    $('body').on('click', '.upload_video_button', function(e) {
+    $('body').on('click', '.upload_poster_video', function(e) {
         e.preventDefault();
 
         var button = $(this),
             aw_uploader = wp.media({
-                title: 'Video',
+                title: 'Poster',
                 library: {
                     uploadedTo: wp.media.view.settings.post.id,
-                    type: 'video'
+                    type: 'image/jpeg'
                 },
                 button: {
-                    text: 'Usar este video'
+                    text: 'Usar este poster'
                 },
                 multiple: false
             }).on('select', function() {
                 var attachment = aw_uploader.state().get('selection').first().toJSON();
-                $('#video_background_loop').val(attachment.url);
+                $('#poster_video').val(attachment.url);
             })
             .open();
     });

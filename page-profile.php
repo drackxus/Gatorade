@@ -293,7 +293,32 @@ get_header();
       align-items: center;
     }
   </style>
+<?php
+  global $post;
 
+  $current = get_the_ID($post->ID);
+  $cargs = array(
+      'child_of'      => 0,
+      'orderby'       => 'name',
+      'order'         => 'ASC',
+      'hide_empty'    => 1,
+      //'taxonomy'      => 'categoriasEventos', //change this to any taxonomy
+  );
+      // List posts by the terms for a custom taxonomy of any post type  
+      
+      $post_ids = array(109, 119);
+      $post_types = array('tarjetas', 'eventos');
+
+      $argsFav = array(
+        'post__in' => $post_ids,
+        'orderby' => 'post__in',
+        'post_type' => $post_types,
+        'post_status' => 'publish',
+        
+      );
+      $posts = get_posts($argsFav);
+      // var_dump($posts);
+?>
   
 <div class="content-center">
   <div></div>
@@ -318,51 +343,29 @@ get_header();
   <span><strong>FAVORITOS</strong></span>
 </div>
 <!-- Slider -->
-<div class="swiper-container">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <div>
-        <img src="<?php echo IMGURL ?>perfil/gatorade1.jpg" alt="">
-        <div class="button-share-div">
-          <button class="button-share"></button>
+<?php 
+    //$favorites = get_user_meta($current_user->ID, 'favorite_post_id', true);
+    //$favs = explode(',',$favorites);
+    //var_dump($posts);
+     foreach($posts as $p) : 
+      echo $p->ID;
+      // var_dump($p);
+?>    
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+           <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($p->ID), 'single-post-thumbnail'); ?>
+          <div>          
+          
+            <div class="button-share-div">
+              <button class="button-share"></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="swiper-slide">
-      <div>
-        <img src="<?php echo IMGURL ?>perfil/gatorade1.jpg" alt="">
-        <div class="button-share-div">
-          <button class="button-share"></button>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div>
-        <img src="<?php echo IMGURL ?>perfil/gatorade1.jpg" alt="">
-        <div class="button-share-div">
-          <button class="button-share"></button>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div>
-        <img src="<?php echo IMGURL ?>perfil/gatorade1.jpg" alt="">
-        <div class="button-share-div">
-          <button class="button-share"></button>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div>
-        <img src="<?php echo IMGURL ?>perfil/gatorade1.jpg" alt="">
-        <div class="button-share-div">
-          <button class="button-share"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Slider -->
+    <?php endforeach; ?>
+    <!-- Slider -->
 
 
 <div class="title-left">
@@ -473,7 +476,6 @@ get_header();
     <button class="button-share"></button>
   </div>
 </div>
-
 <footer class="footer">
   <div class="img-bottom-div">
     <button class="button-right"></button>
