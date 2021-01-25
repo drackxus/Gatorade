@@ -277,6 +277,7 @@ function render_premio_entregado_meta_box()
 }
 
 add_action( 'save_post', 'premio_entregado_meta_box_save' );
+
 function premio_entregado_meta_box_save( $post_id )
 {
 	// Bail if we're doing an auto save
